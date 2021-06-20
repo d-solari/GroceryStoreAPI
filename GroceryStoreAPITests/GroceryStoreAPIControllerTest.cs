@@ -103,7 +103,7 @@ namespace GroceryStoreAPITests
         {
             _mockRepo.Setup(repo => repo.CreateCustomer(new Customer() { }));
 
-            var createdResponse = await _controller.CreateCustomer(new CustomerCreateDto() { Id = 1, Name = "Bob" });
+            var createdResponse = await _controller.CreateCustomer(new CustomerCreateDto() { Name = "Bob" });
             var result = createdResponse.Result as CreatedAtRouteResult;
             var value = result.Value as CustomerReadDto;
 

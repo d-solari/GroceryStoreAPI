@@ -45,10 +45,9 @@ namespace GroceryStoreAPI.Data
 
             var customers = await DeserializeJson();
 
-            if (!customers.Any(_customer => _customer.Id == customer.Id))
-            {
-                customers = customers.Append(customer).ToList();
-            }
+            var newId = customers.Max(c => c.Id) + 1;
+            customer.Id = newId;
+            customers = customers.Append(customer).ToList();
 
             await SerializeJson(customers);
         }
