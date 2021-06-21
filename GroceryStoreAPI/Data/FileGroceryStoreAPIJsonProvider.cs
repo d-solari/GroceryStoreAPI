@@ -18,6 +18,7 @@ namespace GroceryStoreAPI.Data
         {
             _config = config;
             _jsonFile = Path.Combine(Directory.GetCurrentDirectory(), _config.GetValue<string>("JsonFilename"));
+            if (!File.Exists(_jsonFile)) throw new FileNotFoundException("Json database file not found.", _jsonFile);
         }
         public async Task<IEnumerable<Customer>> DeserializeJson()
         {
